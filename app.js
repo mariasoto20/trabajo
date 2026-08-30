@@ -4,12 +4,10 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Configuración del motor de plantillas EJS y archivos estáticos
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta principal
 app.get('/', (req, res) => {
   const proyectos = [
     {
@@ -29,19 +27,25 @@ app.get('/', (req, res) => {
     }
   ];
 
+  // Fotos de perfil (puedes reemplazar estas URLs por imágenes locales en /public/images/)
+  const fotosPerfil = [
+    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80',
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80'
+  ];
+
   res.render('index', { 
     nombre: 'Tu Nombre',
     titulo: 'Mi Portafolio | Desarrollador Web',
-    proyectos: proyectos
+    proyectos: proyectos,
+    fotosPerfil: fotosPerfil
   });
 });
 
-// Escuchar puerto solo en entorno de desarrollo local
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Servidor activo en http://localhost:${PORT}`);
   });
 }
 
-// Exportar la instancia de app para Vercel
 module.exports = app;
