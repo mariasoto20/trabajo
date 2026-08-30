@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Actualización del CSP para permitir FontAwesome y scripts inline -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' ws://localhost:* http://localhost:* chrome-extension:;">
+  
+  <title><%= titulo %></title>
+
+  <!-- Enlace a FontAwesome para los iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+   
+    }
+
+    /* CARRUSEL ARRIBA DE TODO */
+    .hero-carousel {
+      width: 100%;
+      height: 100vh; /* Ocupa el 60% de la altura de la pantalla */
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .carousel-caption h3 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0);
+      color: rgba(255, 255, 255, 0);
+      border: none;
+      font-size: 2rem;
+      padding: 1rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .carousel-btn:hover { background: rgba(0, 0, 0, 0.8); }
+    .prev-btn { left: 0; }
+    .next-btn { right: 0; }
+
+    
+    
+    /* MENÚ LATERAL DERECHO CON ICONOS DE 20PX */
+    .side-menu {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: #ffffff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px 0 0 10px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .side-menu a {
+      color: #555;
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .side-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .side-menu a i {
+      font-size: 20px; /* ICONOS EXACTAMENTE DE 20PX */
+    }
+
+    .side-menu a:hover {
+      background-color: #2563eb;
+      color: white;
+      border-radius: inherit;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    main {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #e2e8f0;
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. CARRUSEL EN LA PARTE SUPERIOR -->
+  <section class="hero-carousel">
+    <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
+    
+    <div class="carousel-track" id="carouselTrack">
+      <% proyectos.forEach((proyecto) => { %>
+        <article class="carousel-slide">
+          <img src="<%= proyecto.imagen %>" alt="<%= proyecto.titulo %>">
+          <div class="carousel-caption">
+            <h3><%= proyecto.titulo %></h3>
+            <p><%= proyecto.descripcion %></p>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+
+    <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
+  </section>
+
+ 
+
+  <!-- 3. MENÚ LATERAL DERECHO FIJO -->
+  <nav class="side-menu">
+    <a href="#inicio" title="Inicio"><i class="fas fa-home"></i></a>
+    <a href="#sobre-mi" title="Sobre Mí"><i class="fas fa-user"></i></a>
+    <a href="#habilidades" title="Habilidades"><i class="fas fa-code"></i></a>
+    <a href="#contacto" title="Contacto"><i class="fas fa-envelope"></i></a>
+  </nav>
+
+  <!-- CONTENIDO DE RELLENO PARA PROBAR EL SCROLL -->
+  <main>
+    <section id="sobre-mi" style="height: 60vh;">
+      <h2>Sobre Mí</h2>
+      <p>Aquí puedes agregar tu información personal y profesional.</p>
+    </section>
+
+    <section id="habilidades" style="height: 60vh;">
+      <h2>Mis Habilidades</h2>
+      <p>Node.js, Express, EJS, bases de datos...</p>
+    </section>
+
+    <section id="contacto" style="height: 60vh;">
+      <h2>Contacto</h2>
+      <p>Envíame un mensaje a través de mis redes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 <%= nombre %>. Todos los derechos reservados.</p>
+  </footer>
+
+<script src="/js/carrusel.js" defer></script>
+
+</body>
+</html>
