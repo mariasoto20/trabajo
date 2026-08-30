@@ -4,10 +4,12 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+// Configuración del motor de plantillas EJS y archivos estáticos
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Ruta principal
 app.get('/', (req, res) => {
   const proyectos = [
     {
@@ -34,6 +36,12 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor activo en http://localhost:${PORT}`);
-});
+// Escuchar puerto solo en entorno de desarrollo local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Servidor activo en http://localhost:${PORT}`);
+  });
+}
+
+// Exportar la instancia de app para Vercel
+module.exports = app;
