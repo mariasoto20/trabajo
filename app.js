@@ -11,27 +11,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   const proyectos = [
     {
-      titulo: 'Sistema de Ventas e Inventario',
-      descripcion: 'Aplicación para control de stock desarrollada con Node.js y MySQL.',
-      imagen: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80'
+      titulo: 'sitios web',
+      descripcion: 'creamos tu sitio web simplificamos el trabajo ',
+      imagen: '/images/1.jpg'
     },
     {
-      titulo: 'Aplicación Móvil de Reportes',
-      descripcion: 'App para la gestión comunitaria de incidencias construida en Flutter.',
-      imagen: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80'
+      titulo: 'Aplicaciones Moviles ',
+      descripcion: 'Apps para la gestión y mejora de tus ventas',
+      imagen: '/images/2.jpg'
     },
     {
       titulo: 'Dashboard de Inteligencia de Negocios',
       descripcion: 'Panel interactivo de métricas e indicadores KPIs empresariales.',
-      imagen: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
+      imagen:'/images/3.jpg'
     }
   ];
 
   // Fotos de perfil (puedes reemplazar estas URLs por imágenes locales en /public/images/)
   const fotosPerfil = [
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80',
-    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80'
+    '/images/foto1.jpeg',
+    '/images/foto3.jpg',
+    '/images/foto2.jpeg'
   ];
 
   res.render('index', { 
