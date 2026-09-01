@@ -24,12 +24,13 @@
       font-family: Arial, sans-serif;
       background-color: #f4f4f9;
       color: #333;
+   
     }
 
-    /* CARRUSEL HERO */
+   
     .hero-carousel {
       width: 100%;
-      height: 80vh;
+      height: 80vh; /* Ocupa el 60% de la altura de la pantalla */
       position: relative;
       overflow: hidden;
       background-color: #000;
@@ -50,13 +51,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    
     }
 
     .carousel-caption {
       position: absolute;
       bottom: 10%;
       left: 5%;
-      right: 5%;
       color: #fff;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     }
@@ -84,6 +85,8 @@
     .prev-btn { left: 0; }
     .next-btn { right: 0; }
 
+    
+    
     /* MENÚ LATERAL DERECHO CON ICONOS DE 20PX */
     .side-menu {
       position: fixed;
@@ -124,35 +127,38 @@
       border-radius: inherit;
     }
 
-    /* ESTILOS PARA LAS FOTOS DE PERFIL */
-    .profile-gallery {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 1rem 0;
-      flex-wrap: wrap;
-    }
 
-    .profile-card {
-      width: 200px;
-      height: 200px;
-      border-radius: 30%;
-      overflow: hidden;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      border: 4px solid #62e7e9bd;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
 
-    .profile-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-    }
+/* Estilos para las fotos de perfil  */
+.profile-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
 
-    .profile-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.profile-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 30%;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  border: 4px solid #f3f8f8bd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.profile-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
     /* CONTENIDO PRINCIPAL */
     main {
@@ -166,62 +172,6 @@
       padding: 2rem;
       background: #e2e8f0;
       color: #475569;
-    }
-
-    /* ==========================================
-       REGLAS ADAPTATIVAS PARA MÓVILES Y TABLETS
-       ========================================== */
-    @media (max-width: 768px) {
-      body {
-        padding-bottom: 60px; /* Espacio para el menú inferior en móvil */
-      }
-
-      /* Ajuste de altura del carrusel en pantallas pequeñas */
-      .hero-carousel {
-        height: 45vh;
-      }
-
-      .carousel-caption h3 {
-        font-size: 1.5rem;
-      }
-
-      .carousel-caption p {
-        font-size: 0.9rem;
-      }
-
-      /* Transforma el menú lateral en una barra fija inferior en móviles */
-      .side-menu {
-        top: auto;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        transform: none;
-        flex-direction: row;
-        justify-content: space-around;
-        border-radius: 0;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
-      }
-
-      .side-menu a {
-        flex: 1;
-        padding: 12px 0;
-        border-bottom: none;
-        border-right: 1px solid #eee;
-      }
-
-      .side-menu a:last-child {
-        border-right: none;
-      }
-
-      /* Reduce el tamaño de las tarjetas de fotos para encajar mejor */
-      .profile-card {
-        width: 140px;
-        height: 140px;
-      }
-
-      main {
-        padding: 1.5rem 1rem;
-      }
     }
   </style>
 </head>
@@ -246,6 +196,8 @@
     <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
   </section>
 
+ 
+
   <!-- 3. MENÚ LATERAL DERECHO FIJO -->
   <nav class="side-menu">
     <a href="#inicio" title="Inicio"><i class="fas fa-home"></i></a>
@@ -256,25 +208,26 @@
 
   <!-- CONTENIDO DE RELLENO PARA PROBAR EL SCROLL -->
   <main>
-    <section id="sobre-mi">
-      <h2>Sobre Nosotros</h2>
-      
-      <!-- Galería de 3 fotos de perfil -->
-      <div class="profile-gallery">
-        <% fotosPerfil.forEach((foto, index) => { %>
-          <div class="profile-card">
-            <img src="<%= foto %>" alt="Foto de perfil <%= index + 1 %>">
-          </div>
-        <% }); %>
+   <section id="sobre-mi">
+  <h2>sobre nosotros </h2>
+  
+  <!-- Galería de 3 fotos de perfil -->
+  <div class="profile-gallery">
+    <% fotosPerfil.forEach((foto, index) => { %>
+      <div class="profile-card">
+        <img src="<%= foto %>" alt="Foto de perfil <%= index + 1 %>">
       </div>
-    </section>
+    <% }); %>
+  </div>
+</section>
 
-    <section id="habilidades" style="min-height: 40vh;">
+
+    <section id="habilidades" style="height: 60vh;">
       <h2>Mis Habilidades</h2>
       <p>Node.js, Express, EJS, bases de datos...</p>
     </section>
 
-    <section id="contacto" style="min-height: 40vh;">
+    <section id="contacto" style="height: 60vh;">
       <h2>Contacto</h2>
       <p>Envíame un mensaje a través de mis redes.</p>
     </section>
@@ -284,7 +237,7 @@
     <p>&copy; 2026 <%= nombre %>. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="/js/carrusel.js" defer></script>
+<script src="/js/carrusel.js" defer></script>
 
 </body>
 </html>
