@@ -24,6 +24,16 @@ app.get('/', (req, res) => {
       titulo: 'Dashboard de Inteligencia de Negocios',
       descripcion: 'Panel interactivo de métricas e indicadores KPIs empresariales.',
       imagen:'/images/3.jpg'
+    },
+      {
+      titulo: 'creacion de videojuegos educativos ',
+      descripcion: 'aplicaciones de escritorio para potenciar el estudio como videojuegos ',
+      imagen:'/images/4.jpg'
+    } ,
+     {
+      titulo: 'redes sociales ',
+      descripcion: 'app de redes sociales y noticias para tu propio negocio o tienda ',
+      imagen:'/images/5.jpg'
     }
   ];
 
