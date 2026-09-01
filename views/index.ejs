@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Actualización del CSP para permitir FontAwesome y scripts inline -->
   <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' ws://localhost:* http://localhost:* chrome-extension:;">
   
   <title><%= titulo %></title>
 
-  <!-- Enlace a FontAwesome para los iconos -->
+  <!-- FontAwesome para los iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -24,13 +23,14 @@
       font-family: Arial, sans-serif;
       background-color: #f4f4f9;
       color: #333;
-   
+     
     }
 
-   
+    /* --- CARRUSEL SUPERIOR --- */
     .hero-carousel {
       width: 100%;
-      height: 80vh; /* Ocupa el 60% de la altura de la pantalla */
+      height: 70vh;
+      min-height: 300px;
       position: relative;
       overflow: hidden;
       background-color: #000;
@@ -51,50 +51,62 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-    
+      opacity: 0.75;
     }
 
     .carousel-caption {
       position: absolute;
-      bottom: 10%;
+      bottom: 8%;
       left: 5%;
+      right: 5%;
       color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
     }
 
     .carousel-caption h3 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
     }
 
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0);
-      color: rgba(255, 255, 255, 0);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
       border: none;
-      font-size: 2rem;
-      padding: 1rem;
+      font-size: 1.5rem;
+      padding: 0.8rem;
       cursor: pointer;
       z-index: 10;
-      transition: background 0.3s;
+      border-radius: 4px;
     }
 
-    .carousel-btn:hover { background: rgba(0, 0, 0, 0.8); }
-    .prev-btn { left: 0; }
-    .next-btn { right: 0; }
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
 
-    
-    
-    /* MENÚ LATERAL DERECHO CON ICONOS DE 20PX */
+    /* --- ENCABEZADO --- */
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 4px solid #2563eb;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* --- MENÚ NAVEGACIÓN DERECHA (ESCRITORIO) --- */
     .side-menu {
       position: fixed;
-      top: 30%;
+      top: 50%;
       right: 0;
       transform: translateY(-50%);
       background-color: #ffffff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.15);
       border-radius: 10px 0 0 10px;
       display: flex;
       flex-direction: column;
@@ -103,7 +115,7 @@
 
     .side-menu a {
       color: #555;
-      padding: 15px;
+      padding: 14px;
       text-align: center;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -118,66 +130,128 @@
     }
 
     .side-menu a i {
-      font-size: 20px; /* ICONOS EXACTAMENTE DE 20PX */
+      font-size: 20px;
     }
 
     .side-menu a:hover {
       background-color: #2563eb;
       color: white;
-      border-radius: inherit;
     }
 
-
-
-/* Estilos para las fotos de perfil  */
-.profile-gallery {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 1rem 0;
-  flex-wrap: wrap;
-}
-
-.profile-card {
-  width: 200px;
-  height: 200px;
-  border-radius: 30%;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  border: 4px solid #f3f8f8bd;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-}
-
-.profile-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-    /* CONTENIDO PRINCIPAL */
+    /* --- SECCIÓN SOBRE MÍ Y GALERÍA --- */
     main {
-      padding: 3rem 2rem;
-      max-width: 1000px;
+      padding: 2rem 1.5rem;
+      max-width: 900px;
       margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+      text-align: center;
+    }
+
+    .profile-gallery {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .profile-card {
+      width: 200px;
+      height: 200px;
+      border-radius: 30%;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      border: 4px solid #fefeff;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
       background: #e2e8f0;
       color: #475569;
+      margin-bottom: 0;
+    }
+
+    /* ==========================================
+       REGLAS RESPONSIVAS (MEDIA QUERIES)
+       ========================================== */
+
+    /* Móviles y pantallas pequeñas (< 768px) */
+    @media (max-width: 767px) {
+      body {
+        padding-right: 0; /* Quita el margen derecho */
+        padding-bottom: 60px; /* Añade margen inferior para la barra fija */
+      }
+
+      /* Mueve el menú a la parte inferior en móviles */
+      .side-menu {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        border-radius: 0;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+        background-color: #ffffff;
+      }
+
+      .side-menu a {
+        flex: 1;
+        padding: 12px 0;
+        border-bottom: none;
+        border-right: 1px solid #eee;
+      }
+
+      .side-menu a:last-child {
+        border-right: none;
+      }
+
+      .hero-carousel {
+        height: 35vh; /* Menor altura en pantallas pequeñas */
+      }
+
+      .carousel-caption h3 {
+        font-size: 1.3rem;
+      }
+
+      .carousel-caption p {
+        font-size: 0.9rem;
+      }
+
+      .profile-card {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. CARRUSEL EN LA PARTE SUPERIOR -->
+  <!-- CARRUSEL SUPERIOR -->
   <section class="hero-carousel">
     <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
     
@@ -196,9 +270,8 @@
     <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
   </section>
 
- 
 
-  <!-- 3. MENÚ LATERAL DERECHO FIJO -->
+  <!-- MENÚ RESPONSIVO (A la derecha en PC, abajo en móvil) -->
   <nav class="side-menu">
     <a href="#inicio" title="Inicio"><i class="fas fa-home"></i></a>
     <a href="#sobre-mi" title="Sobre Mí"><i class="fas fa-user"></i></a>
@@ -206,30 +279,30 @@
     <a href="#contacto" title="Contacto"><i class="fas fa-envelope"></i></a>
   </nav>
 
-  <!-- CONTENIDO DE RELLENO PARA PROBAR EL SCROLL -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main>
-   <section id="sobre-mi">
-  <h2>sobre nosotros </h2>
-  
-  <!-- Galería de 3 fotos de perfil -->
-  <div class="profile-gallery">
-    <% fotosPerfil.forEach((foto, index) => { %>
-      <div class="profile-card">
-        <img src="<%= foto %>" alt="Foto de perfil <%= index + 1 %>">
+    <section id="sobre-mi">
+      <h2>Sobre Mí</h2>
+      
+      <div class="profile-gallery">
+        <% fotosPerfil.forEach((foto, index) => { %>
+          <div class="profile-card">
+            <img src="<%= foto %>" alt="Foto de perfil <%= index + 1 %>">
+          </div>
+        <% }); %>
       </div>
-    <% }); %>
-  </div>
-</section>
 
-
-    <section id="habilidades" style="height: 60vh;">
-      <h2>Mis Habilidades</h2>
-      <p>Node.js, Express, EJS, bases de datos...</p>
+      
     </section>
 
-    <section id="contacto" style="height: 60vh;">
+    <section id="habilidades">
+      <h2>Habilidades</h2>
+      <p style="text-align: center;">Node.js, Express, EJS, JavaScript, MySQL, pnpm, Git.</p>
+    </section>
+
+    <section id="contacto">
       <h2>Contacto</h2>
-      <p>Envíame un mensaje a través de mis redes.</p>
+      <p style="text-align: center;">¿Tienes una propuesta o proyecto? Escríbeme a tuemail@ejemplo.com</p>
     </section>
   </main>
 
@@ -237,7 +310,33 @@
     <p>&copy; 2026 <%= nombre %>. Todos los derechos reservados.</p>
   </footer>
 
-<script src="/js/carrusel.js" defer></script>
+  <!-- SCRIPT DEL CARRUSEL -->
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(track.children);
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }, 5000);
+  </script>
 
 </body>
 </html>
